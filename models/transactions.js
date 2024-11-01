@@ -22,7 +22,7 @@ const transactionsUserSchema = new mongoose.Schema({
     username: { type: String, required: true },
     password: { type: String, required: true },
     balance: { type: Number, default: 0 }, 
-    transactions: [trackerSchema],
+    transactions: [transactionsSchema],
 });
 
 const Transactions = mongoose.model('Transactions', transactionsUserSchema);

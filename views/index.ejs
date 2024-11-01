@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firetracker</title>
-    <%- include('partials/nav') %>
-</head>
-<body>
-    <h1>Firetracker: The World's #1 Kakeibo-Style Tracker</h1>
-    <p>Already have an account with us? Come on in! If not, click the sign-up button below to start your easy journey toward tracking your expenses.</p>
-    <button>Log In</button>
-    <button>Get Started</button>
-</body>
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Firetracker</title>
+        <%- include('partials/nav') %>
+    </head>
+    <body>
+        <div>
+            <h1>Firetracker: The World's #1 Kakeibo-Style Tracker</h1>
+            <p>
+                New here? Click the sign-up button below to start a simple,
+                effective journey toward mastering your expenses with ease.
+            </p>
+            <p>
+                <a href="/auth/sign-up">Sign Up</a> or
+                <a href="/auth/sign-in">Log In</a>
+            </p>
+        </div>
+    </body>
 </html>
