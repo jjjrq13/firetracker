@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
-// const transactionController = require('./controllers/transactions')
+const transactionController = require('./controllers/transactions.js')
 
 // ------------- VARIABLES -------------
 const port = process.env.PORT ? process.env.PORT : '3000';
@@ -31,18 +31,18 @@ app.use(
     session({
         secret: process.env.SESSION_SECRET,
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: false,
+        cookie: { maxAge: 15 * 60 * 1000 },
     }),
 );
 app.use(passUserToview);
-app.use(isSignedIn);
 
 
 //------------- ROUTES  [HOME]-------------
 
 app.get('/', (req, res) => {
         if (req.session.user) {
-            res.redirect(`/transactions`);
+            res.redirect(`/users/${req.session.user.username}/transactions`);
         } else{
     res.render('index.ejs', { user: req.session.user });
         }
@@ -58,5 +58,8 @@ app.get('/contact', async (req, res) => {
 
 app.use('/auth', authController);
 
+app.use(isSignedIn);
+
+app.use('/users/:username/transactions', transactionController);
 
 app.listen(port, () => console.log(`Express is running on port ${port}`));

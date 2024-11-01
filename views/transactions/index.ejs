@@ -1,1 +1,41 @@
-we are in index
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Firetracker</title>
+        <%- include('../partials/nav') %>
+    </head>
+    <body>
+        <div>
+            <div>
+                <h1>Hello, <%= currentUser.firstName %></h1>
+            </div>
+            <div>
+                <p>Balance $<%= currentUser.balance %></p>
+            </div>
+            <div>
+                <div>
+                    <p>Income $<%= income %></p>
+                </div>
+                <div>
+                    <p>Expenses $<%= expenses %></p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <% transactions.forEach((item) => { %>
+                <a href="/transactions/<%= currentUser.transactions.number %>" style="text-decoration: none; color: inherit;">
+                    <div style="cursor: pointer;">
+                        <div><%= item.description %></div>
+                        <div>$<%= item.amount %></div>
+                    </div>
+                    <div>
+                        <div><%= item.date %></div>
+                        <div><%= item.category %></div>
+                    </div>
+                </a>
+                <% }) %>
+        </div>
+    </body>
+</html>

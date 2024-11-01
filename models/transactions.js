@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const transactionsSchema = new mongoose.Schema({
-    description: { type: String, maxlength: 100 },
+    description: { type: String, maxlength: 50 },
     amount: { type: Number, required: true },
     date: { type: Date, default: Date.now, required: true },
     type: { 
@@ -20,6 +20,8 @@ const transactionsSchema = new mongoose.Schema({
 
 const transactionsUserSchema = new mongoose.Schema({
     username: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: {type: String, required: true},
     password: { type: String, required: true },
     balance: { type: Number, default: 0 }, 
     transactions: [transactionsSchema],
