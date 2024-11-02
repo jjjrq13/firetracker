@@ -25,17 +25,24 @@
         </div>
         <div>
             <% transactions.forEach((item) => { %>
-                <a href="/transactions/<%= currentUser.transactions.number %>" style="text-decoration: none; color: inherit;">
-                    <div style="cursor: pointer;">
-                        <div><%= item.description %></div>
-                        <div>$<%= item.amount %></div>
-                    </div>
-                    <div>
-                        <div><%= item.date %></div>
-                        <div><%= item.category %></div>
-                    </div>
-                </a>
-                <% }) %>
+            <a
+                href="/users/<%= user.username %>/transactions/new"
+                style="text-decoration: none; color: inherit"
+            >
+                <div style="cursor: pointer">
+                    <div><%= item.description %></div>
+                    <div>$<%= item.amount %></div>
+                </div>
+                <div>
+                    <div><%= item.date %></div>
+                    <% if(item.type === 'Expense'){ %>
+                    <div><%= item.type %></div>
+                    <% } %>
+                    <div><%= item.category %></div>
+                </div>
+            </a>
+            <br />
+            <% }) %>
         </div>
     </body>
 </html>
