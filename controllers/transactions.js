@@ -10,20 +10,28 @@ router.get('/', async (req, res) => {
         let userExpenses = 0;
         let userIncome = 0;
 
+        currentUser.transactions.forEach(async (transaction) => {
+            if (!transaction.displayDate) {
+                transaction.displayDate = transaction.date.toLocaleDateString(
+                    'en-US',
+                    {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                    },
+                );
+                await currentUser.transations.save();
+            }
+        });
 
-        console.log(currentUser.transactions);
-
-        currentUser.transactions.sort((a,b) => b.date - a.date);
+        currentUser.transactions.sort((a, b) => b.date - a.date);
 
         currentUser.transactions.forEach((transaction) => {
-            console.log(`This is what is printing: ${transaction}`);
+            console.log(transaction.displayDate);
 
-            console.log('This is Tpye:', transaction.type);
-            console.log('this is Amount:', transaction.amount);
             if (transaction.type === 'Expense') {
                 userExpenses = transaction.amount + userExpenses;
-            } 
-            else if (transaction.type === 'Income'){
+            } else if (transaction.type === 'Income') {
                 userIncome = transaction.amount + userIncome;
             }
         });
@@ -46,6 +54,24 @@ router.get('/new', async (req, res) => {
     res.render('transactions/new.ejs');
 });
 
+router.get('/:transactionId', async (req, res) => {
+    try {
+
+        const currentUser = await Transactions.findById(req.session.user._id);
+        
+        const transaction = currentUser.transactions.id(req.params.transactionId);
+        console.log('this is the transaction',transaction);
+        console.log(req.params.transactionId);
+
+        res.render('transactions/show.ejs', {
+            transaction: transaction,
+        });
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
+
 router.post('/', async (req, res) => {
     try {
         const currentUser = await Transactions.findById(req.session.user._id);
@@ -54,7 +80,7 @@ router.post('/', async (req, res) => {
 
         await currentUser.save();
 
-        console.log(req.body);
+        // console.log(req.body);
 
         res.redirect(`/users/${currentUser.username}/transactions`);
     } catch (error) {
@@ -62,5 +88,21 @@ router.post('/', async (req, res) => {
         res.redirect('/');
     }
 });
+
+
+
+
+router.delete('/:transactionId', async (req,res) => {
+    try{
+        const currentUser = await Transactions.findById(req.session.user._id);
+        currentUser.transactions.id(req.params.transactionId).deleteOne();
+        await currentUser.save();
+
+        res.redirect(`/users/${currentUser.username}/transactions`);
+    } catch (error){
+        console.log(error);
+        res.redirect('/');
+    }
+})
 
 module.exports = router;

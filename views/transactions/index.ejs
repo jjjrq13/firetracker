@@ -24,17 +24,17 @@
             </div>
         </div>
         <div>
-            <% transactions.forEach((item) => { %>
+            <% transactions.forEach((item,idx) => { %>
+
             <a
-                href="/users/<%= user.username %>/transactions/new"
-                style="text-decoration: none; color: inherit"
+                href="/users/<%= user.username %>/transactions/<%= transactions[idx]._id %>"
             >
                 <div style="cursor: pointer">
                     <div><%= item.description %></div>
                     <div>$<%= item.amount %></div>
                 </div>
                 <div>
-                    <div><%= item.date %></div>
+                    <div><%= item.displayDate %></div>
                     <% if(item.type === 'Expense'){ %>
                     <div><%= item.type %></div>
                     <% } %>
