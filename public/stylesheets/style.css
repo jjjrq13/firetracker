@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+html, body {
+  background-color: transparent !important;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation {
+  height: 40px;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  text-transform: uppercase; 
+  gap: 20px;     
+  padding-right: 20px;
+  background-color: #1C1C1C;
+ }
+
+ .navigation a {
+  color: #FFF5E1;
+  text-decoration: none;
+ }
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Raleway', sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.index-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFF5E1;
+}
+
+.index-container h1 {
+  text-transform: uppercase; 
+}
+
+.index-container p {
+  display: flex;
+  gap: 60px;
+}
+
+.index-container p a {
+  background-color: #FF7F50;
+  width: 100px;
+  padding: 10px;
+  border-radius: 8px;
+  border: #A9A9A9;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+text-align: center;}
+
+
+.contact-container  {
+  background-color: #FFF5E1;
+  width: 100vw;
+  height: 100vh;
+}
+
+.contact-container div {
+  display: flex;
+}
+
+.contact-us-box{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  height: 500px;
+  width: 500px;
+  background-color: green;
+}
