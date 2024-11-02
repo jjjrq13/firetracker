@@ -56,11 +56,12 @@ router.get('/new', async (req, res) => {
 
 router.get('/:transactionId', async (req, res) => {
     try {
-
         const currentUser = await Transactions.findById(req.session.user._id);
-        
-        const transaction = currentUser.transactions.id(req.params.transactionId);
-        console.log('this is the transaction',transaction);
+
+        const transaction = currentUser.transactions.id(
+            req.params.transactionId,
+        );
+        console.log('this is the transaction', transaction);
         console.log(req.params.transactionId);
 
         res.render('transactions/show.ejs', {
@@ -89,20 +90,56 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/:transactionId/edit', async (req, res) => {
+    try {
+        const currentUser = await Transactions.findById(req.session.user._id);
+        const transaction = currentUser.transactions.id(
+            req.params.transactionId,
+        );
 
+        const convertedDate = transaction.date.toISOString().split('T')[0];
 
+        res.render(`transactions/edit.ejs`, {
+            date: convertedDate,
+            transaction: transaction,
+        });
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
 
-router.delete('/:transactionId', async (req,res) => {
-    try{
+router.put('/:transactionId', async (req, res) => {
+    try {
+        const currentUser = await Transactions.findById(req.session.user._id);
+        const transaction = currentUser.transactions.id(
+            req.params.transactionId,
+        );
+
+        transaction.set(req.body);
+
+        await currentUser.save();
+
+        res.redirect(
+            `/users/${currentUser.username}/transactions/${req.params.transactionId}`,
+        );
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
+
+router.delete('/:transactionId', async (req, res) => {
+    try {
         const currentUser = await Transactions.findById(req.session.user._id);
         currentUser.transactions.id(req.params.transactionId).deleteOne();
         await currentUser.save();
 
         res.redirect(`/users/${currentUser.username}/transactions`);
-    } catch (error){
+    } catch (error) {
         console.log(error);
         res.redirect('/');
     }
-})
+});
 
 module.exports = router;

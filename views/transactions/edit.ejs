@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit Transaction</title>
+        <%- include('../partials/nav') %>
+    </head>
+    <body>
+        <div>
+            <form
+                action="/users/<%= user.username %>/transactions/<%= transaction._id %>?_method=PUT"
+                method="POST"
+            >
+                <div>
+                    <h1>Edit Transaction</h1>
+
+                    <% console.log(user.username) %>
+
+                    <label for="date"></label>
+                    <input
+                        type="date"
+                        name="date"
+                        id="date"
+                        placeholder="Date"
+                        value="<%= date %>"
+                    />
+
+                    <label for="description"></label>
+                    <input
+                        type="text"
+                        name="description"
+                        id="description"
+                        placeholder="Description"
+                        value="<%= transaction.description %>"
+                        
+                    />
+
+                    <label for="amount"></label>
+                    <input
+                        type="number"
+                        name="amount"
+                        id="Amount"
+                        placeholder="Amount"
+                        step="0.01"
+                        value="<%= transaction.amount %>"
+                    />
+
+                    <label for="type"></label>
+                    <select id="type" name="type">
+                        <option value="Income" <%= transaction.type === "Income" ? "selected" : "" %> >Income</option>
+                        <option value="Expense" <%= transaction.type === "Expense" ? "selected" : "" %> >Expense</option>
+                    </select>
+
+                    <label for="category"></label>
+                    <select
+                        id="category"
+                        name="category"
+                        placeholder="Category"
+                    >
+                        <option value="Income" <%= transaction.category === "Income" ? "selected" : "" %> >Income</option>
+                        <option value="Needs" <%= transaction.category === "Needs" ? "selected" : "" %>>Needs</option>
+                        <option value="Wants" <%= transaction.category === "Wants" ? "selected" : "" %>>Wants</option>
+                        <option value="Culture" <%= transaction.category === "Culture" ? "selected" : "" %>>Culture</option>
+                        <option value="Unexpected" <%= transaction.category === "Unexpected" ? "selected" : "" %>>Unexpected</option>
+                        <option value="Saved" <%= transaction.category === "Saved" ? "selected" : "" %>>Saved</option>
+                    </select>
+
+                    <label for="notes"></label>
+                    <textarea name="notes" id="notes" placeholder="Notes">
+<%= transaction.notes %></textarea
+                    >
+                </div>
+                <div>
+                    <button type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

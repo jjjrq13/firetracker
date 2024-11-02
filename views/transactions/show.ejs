@@ -31,15 +31,20 @@
                 </div>
             </div>
             <div>
-
-                <a href="/users/<%= user.username %>/transactions/<%= transaction._id %>/edit">Edit</a>
-
-                <form
-                    action="/users/<%= user.username %>/transactions/<%= transaction._id %>?_method=DELETE"
-                    method="POST"
-                >
-                    <button type="submit">Delete</button>
-                </form>
+                <div>
+                    <a
+                        href="/users/<%= user.username %>/transactions/<%= transaction._id %>/edit"
+                        >Edit</a
+                    >
+                </div>
+                <div>
+                    <form
+                        action="/users/<%= user.username %>/transactions/<%= transaction._id %>?_method=DELETE"
+                        method="POST"
+                    >
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </body>
