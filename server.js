@@ -15,6 +15,7 @@ const transactionController = require('./controllers/transactions.js')
 const port = process.env.PORT ? process.env.PORT : '3000';
 const isSignedIn = require('./middleware/is-signedin.js');
 const passUserToview = require('./middleware/pass-user-to-view.js');
+const path = require('path');
 
 // ------------- ACTIVATE -------------
 
@@ -35,6 +36,7 @@ app.use(
         cookie: { maxAge: 15 * 60 * 1000 },
     }),
 );
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(passUserToview);
 
 
