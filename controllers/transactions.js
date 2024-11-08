@@ -4,25 +4,30 @@ const router = express.Router();
 const Transactions = require('../models/transactions');
 
 router.get('/', async (req, res) => {
+    const date = new Date().toLocaleDateString('en-US', {
+        month: 'short',
+        day: '2-digit',
+    });
+    console.log(date);
+
     try {
         const currentUser = await Transactions.findById(req.session.user._id);
 
         let userExpenses = 0;
         let userIncome = 0;
 
-        currentUser.transactions.forEach(async (transaction) => {
-            if (!transaction.displayDate) {
-                transaction.displayDate = transaction.date.toLocaleDateString(
-                    'en-US',
-                    {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric',
-                    },
-                );
-                await currentUser.transations.save();
-            }
-        });
+        for (const transaction of currentUser.transactions) {
+            transaction.displayDate = transaction.date.toLocaleDateString(
+                'en-US',
+                {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                },
+            );
+        }
+
+        await currentUser.save();
 
         currentUser.transactions.sort((a, b) => b.date - a.date);
 
@@ -43,6 +48,7 @@ router.get('/', async (req, res) => {
             expenses: userExpenses,
             income: userIncome,
             transactions: currentUser.transactions,
+            currentDate: date,
         });
     } catch (error) {
         console.log(error);
