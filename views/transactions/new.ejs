@@ -6,13 +6,13 @@
         <title>Firetracker</title>
         <%- include('../partials/nav') %>
     </head>
-    <body>
-        <div>
-            <form
+    <body class="new-container">
+        <div class="time-to-add-container">
+            <form class="new-form"
                 action="/users/<%= user.username %>/transactions"
                 method="POST"
             >
-                <div>
+                
                     <h1>New Transaction</h1>
 
                     <% console.log(user.username) %>
@@ -75,7 +75,7 @@
                         id="notes"
                         placeholder="Notes"
                     ></textarea>
-                </div>
+                
                 <div>
                     <button type="submit">Add</button>
                 </div>

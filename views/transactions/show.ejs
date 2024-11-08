@@ -6,45 +6,46 @@
         <title>Firetracker</title>
         <%- include('../partials/nav') %>
     </head>
-    <body>
-        <div>
+    <body class="show-container">
+        <div class="show-form">
+            <h1><%= transaction.description %></h1>
             <div>
-                <h2>Transaction</h2>
-            </div>
-            <div>
-                <div>
-                    <p>Amount</p>
-                    <p><%= transaction.displayDate %></p>
+                <div class="i-hate-css">
+                    <div class="top-view">
+                        <p>Amount</p>
+                        <p><%= transaction.displayDate %></p>
+                    </div>
+                    <div class="amount-vew">
+                        <h3>$<%= transaction.amount %></h3>
+                    </div>
                 </div>
-                <div>
-                    <h3>$</h3>
-                    <h3><%= transaction.amount %></h3>
-                </div>
-                <div>
-                    <p><%= transaction.type %></p>
+                <div class="type-category-view">
+                    <p>
+                        <%= (transaction.type==='Income')? transaction.type :
+                        transaction.type + ':'%>
+                    </p>
                     <% if (transaction.type === 'Expense'){%>
                     <p><%= transaction.category %></p>
                     <%}%>
                 </div>
-                <div>
+                <div class="notes-view">
                     <p><%= transaction.notes %></p>
                 </div>
             </div>
+
             <div>
-                <div>
-                    <a
-                        href="/users/<%= user.username %>/transactions/<%= transaction._id %>/edit"
-                        >Edit</a
-                    >
-                </div>
-                <div>
-                    <form
-                        action="/users/<%= user.username %>/transactions/<%= transaction._id %>?_method=DELETE"
-                        method="POST"
-                    >
-                        <button type="submit">Delete</button>
-                    </form>
-                </div>
+                <a class="edit-link"
+                    href="/users/<%= user.username %>/transactions/<%= transaction._id %>/edit"
+                    >Edit</a
+                >
+            </div>
+            <div>
+                <form
+                    action="/users/<%= user.username %>/transactions/<%= transaction._id %>?_method=DELETE"
+                    method="POST"
+                >
+                    <button class="delete-button" type="submit">Delete</button>
+                </form>
             </div>
         </div>
     </body>

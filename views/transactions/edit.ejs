@@ -7,12 +7,11 @@
         <%- include('../partials/nav') %>
     </head>
     <body>
-        <div>
-            <form
+        <div class="edit-container">
+            <form class="edit-form"
                 action="/users/<%= user.username %>/transactions/<%= transaction._id %>?_method=PUT"
                 method="POST"
             >
-                <div>
                     <h1>Edit Transaction</h1>
 
                     <% console.log(user.username) %>
@@ -48,8 +47,11 @@
 
                     <label for="type"></label>
                     <select id="type" name="type">
-                        <option value="Income" <%= transaction.type === "Income" ? "selected" : "" %> >Income</option>
-                        <option value="Expense" <%= transaction.type === "Expense" ? "selected" : "" %> >Expense</option>
+
+                        <option value="Income" <%= transaction.type === "Income" ? 'selected="selected"' : "" %>>Income</option>
+                        <option value="Expense" <%= transaction.type === "Expense" ? 'selected="selected"' : "" %>>Expense</option>
+                        
+
                     </select>
 
                     <label for="category"></label>
@@ -58,19 +60,19 @@
                         name="category"
                         placeholder="Category"
                     >
-                        <option value="Income" <%= transaction.category === "Income" ? "selected" : "" %> >Income</option>
-                        <option value="Needs" <%= transaction.category === "Needs" ? "selected" : "" %>>Needs</option>
-                        <option value="Wants" <%= transaction.category === "Wants" ? "selected" : "" %>>Wants</option>
-                        <option value="Culture" <%= transaction.category === "Culture" ? "selected" : "" %>>Culture</option>
-                        <option value="Unexpected" <%= transaction.category === "Unexpected" ? "selected" : "" %>>Unexpected</option>
-                        <option value="Saved" <%= transaction.category === "Saved" ? "selected" : "" %>>Saved</option>
+                        <option value="Income" <%= (transaction.category === "Income") ? "selected" : "" %> >Income</option>
+                        <option value="Needs" <%= (transaction.category === "Needs") ? "selected" : "" %>>Needs</option>
+                        <option value="Wants" <%= (transaction.category === "Wants") ? "selected" : "" %>>Wants</option>
+                        <option value="Culture" <%= (transaction.category === "Culture") ? "selected" : "" %>>Culture</option>
+                        <option value="Unexpected" <%= (transaction.category === "Unexpected") ? "selected" : "" %>>Unexpected</option>
+                        <option value="Saved" <%= (transaction.category === "Saved") ? "selected" : "" %>>Saved</option>
                     </select>
 
                     <label for="notes"></label>
                     <textarea name="notes" id="notes" placeholder="Notes">
 <%= transaction.notes %></textarea
                     >
-                </div>
+            
                 <div>
                     <button type="submit">Update</button>
                 </div>
