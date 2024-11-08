@@ -15,7 +15,7 @@ const transactionsSchema = new mongoose.Schema({
         required: true,
     },
     notes: { type: String, maxlength: 200 },
-    displayDate: {type: String},
+    displayDate: { type: String },
 });
 
 const transactionsUserSchema = new mongoose.Schema({

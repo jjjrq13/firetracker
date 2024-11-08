@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
         month: 'short',
         day: '2-digit',
     });
-    console.log(date);
 
     try {
         const currentUser = await Transactions.findById(req.session.user._id);
@@ -32,8 +31,6 @@ router.get('/', async (req, res) => {
         currentUser.transactions.sort((a, b) => b.date - a.date);
 
         currentUser.transactions.forEach((transaction) => {
-            console.log(transaction.displayDate);
-
             if (transaction.type === 'Expense') {
                 userExpenses = transaction.amount + userExpenses;
             } else if (transaction.type === 'Income') {
@@ -86,8 +83,6 @@ router.post('/', async (req, res) => {
         currentUser.transactions.push(req.body);
 
         await currentUser.save();
-
-        // console.log(req.body);
 
         res.redirect(`/users/${currentUser.username}/transactions`);
     } catch (error) {

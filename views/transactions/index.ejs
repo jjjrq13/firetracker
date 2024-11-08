@@ -37,33 +37,31 @@
         <div class="because-i-need-another-one">
             <h1>Transaction History</h1>
             <div class="all-transactions">
-            <% transactions.forEach((item,idx) => { %>
+                <% transactions.forEach((item,idx) => { %>
 
-            <a
-                href="/users/<%= user.username %>/transactions/<%= transactions[idx]._id %>"
-            >
-                <div style="cursor: pointer" class="description-and-amount">
-                    <p class="description"><%= item.description %></p>
-                    <p class="amount">$<%= item.amount %></p>
-                </div>
-                <div class="type-category-date">
-                    <div class="type-category">
-                        <% if(item.type === 'Expense'){ %>
-                        <p class="transaction-type"><%= item.type %>:</p>
-                        <% } %>
-                        <p class="transaction-category"><%= item.category %></p>
+                <a
+                    href="/users/<%= user.username %>/transactions/<%= transactions[idx]._id %>"
+                >
+                    <div style="cursor: pointer" class="description-and-amount">
+                        <p class="description"><%= item.description %></p>
+                        <p class="amount">$<%= item.amount %></p>
                     </div>
-                    <div class="transaction-date">
-                        <p><%= item.displayDate %></p>
+                    <div class="type-category-date">
+                        <div class="type-category">
+                            <% if(item.type === 'Expense'){ %>
+                            <p class="transaction-type"><%= item.type %>:</p>
+                            <% } %>
+                            <p class="transaction-category">
+                                <%= item.category %>
+                            </p>
+                        </div>
+                        <div class="transaction-date">
+                            <p><%= item.displayDate %></p>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <!-- <br /> -->
-            <% }) %>
+                </a>
+                <% }) %>
+            </div>
         </div>
-        </div>
-
-
-        
     </body>
 </html>

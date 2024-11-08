@@ -8,74 +8,63 @@
     </head>
     <body class="new-container">
         <div class="time-to-add-container">
-            <form class="new-form"
+            <form
+                class="new-form"
                 action="/users/<%= user.username %>/transactions"
                 method="POST"
             >
-                
-                    <h1>New Transaction</h1>
+                <h1>New Transaction</h1>
 
-                    <% console.log(user.username) %>
+                <label for="date"></label>
+                <input type="date" name="date" id="date" placeholder="Date" />
 
-                    <label for="date"></label>
-                    <input
-                        type="date"
-                        name="date"
-                        id="date"
-                        placeholder="Date"
-                    />
+                <label for="description"></label>
+                <input
+                    type="text"
+                    name="description"
+                    id="description"
+                    placeholder="Description"
+                />
 
-                    <label for="description"></label>
-                    <input
-                        type="text"
-                        name="description"
-                        id="description"
-                        placeholder="Description"
-                    />
+                <label for="amount"></label>
+                <input
+                    type="number"
+                    name="amount"
+                    id="Amount"
+                    placeholder="Amount"
+                    step="0.01"
+                />
 
-                    <label for="amount"></label>
-                    <input
-                        type="number"
-                        name="amount"
-                        id="Amount"
-                        placeholder="Amount"
-                        step="0.01"
-                    />
+                <label for="type"></label>
+                <select id="type" name="type" aria-placeholder="type">
+                    <option value="" disabled selected hidden>
+                        Select Type
+                    </option>
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+                </select>
 
-                    <label for="type"></label>
-                    <select id="type" name="type" aria-placeholder="type">
-                        <option value="" disabled selected hidden>
-                            Select Type
-                        </option>
-                        <option value="Income">Income</option>
-                        <option value="Expense">Expense</option>
-                    </select>
+                <label for="category"></label>
+                <select id="category" name="category" placeholder="Category">
+                    <option value="" disabled selected hidden>
+                        Select Category
+                    </option>
 
-                    <label for="category"></label>
-                    <select
-                        id="category"
-                        name="category"
-                        placeholder="Category"
-                    >
-                        <option value="" disabled selected hidden>
-                            Select Category
-                        </option>
+                    <option value="Income">Income</option>
+                    <option value="Needs">Needs</option>
+                    <option value="Wants">Wants</option>
+                    <option value="Culture">Culture</option>
+                    <option value="Unexpected">Unexpected</option>
+                    <option value="Saved">Saved</option>
+                </select>
 
-                        <option value="Income">Income</option>
-                        <option value="Needs">Needs</option>
-                        <option value="Wants">Wants</option>
-                        <option value="Culture">Culture</option>
-                        <option value="Unexpected">Unexpected</option>
-                        <option value="Saved">Saved</option>
-                    </select>
+                <label for="notes"></label>
+                <textarea
+                    name="notes"
+                    id="notes"
+                    placeholder="Notes"
+                ></textarea>
 
-                    <label for="notes"></label>
-                    <textarea
-                        name="notes"
-                        id="notes"
-                        placeholder="Notes"
-                    ></textarea>
-                
                 <div>
                     <button type="submit">Add</button>
                 </div>

@@ -47,8 +47,6 @@ router.post('/sign-in', async (req, res) => {
             username: req.body.username.toLowerCase(),
         });
 
-        // console.log(userInDatabase);
-
         if (!userInDatabase) {
             return res.send('Login failed. Please try again.');
         }
@@ -67,8 +65,7 @@ router.post('/sign-in', async (req, res) => {
             _id: userInDatabase._id,
         };
 
-        res.redirect('/')
-
+        res.redirect('/');
     } catch (error) {
         console.log(error);
         res.redirect('/');

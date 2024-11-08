@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <%- include('../partials/nav') %>
-</head>
-<body>
-    <div class="sign-up-container">
-        <h1>Create new account</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sign Up</title>
+        <%- include('../partials/nav') %>
+    </head>
+    <body>
+        <div class="sign-up-container">
+            <h1>Create new account</h1>
 
-        <form action="/auth/sign-up" method="POST" class="sign-up-form">
-            <label for="firstName">First Name</label>
-            <input type="text" name="firstName" id="firstName" required>
+            <form action="/auth/sign-up" method="POST" class="sign-up-form">
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" id="firstName" required />
 
-            <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" id="lastName"  required>
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" id="lastName" required />
 
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username"  required>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required />
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"  required>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required />
 
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" name="confirmPassword" id="confirmPassword"  required>
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    required
+                />
 
-            <button type="submit">Sign Up</button>
-
-        </form>
-    </div>
-</body>
-
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </body>
 </html>

@@ -43,7 +43,6 @@ body {
     box-sizing: border-box;
 }
 
-
 .index-container {
     display: flex;
     flex-direction: column;
@@ -554,7 +553,7 @@ body {
     background-color: #ff7f50;
     display: flex;
     flex-direction: column;
-    margin: 20%;
+    margin: 10%;
     padding: 1rem 1.5rem;
     border-radius: 30px;
 
@@ -647,7 +646,7 @@ body {
     background-color: #ff7f50;
     display: flex;
     flex-direction: column;
-    margin: 20%;
+    margin: 10%;
     border-radius: 30px;
     border: 1px green solid;
 
